@@ -12,7 +12,8 @@
   "runArgs": [
     "--net=host",
     "--privileged",
-    "-e", "DISPLAY=${localEnv:DISPLAY}"
+    "-e", "DISPLAY=${localEnv:DISPLAY}",
+    "--name", "URC-Rover-Dev-Humble"
   ],
 
   // Install useful VS Code extensions inside the container
