@@ -1,0 +1,27 @@
+{
+  "name": "URC Rover Dev (Humble)",
+  "dockerFile": "../Dockerfile",
+
+
+  // Mounts your local project folder into the container
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/ros/urc_rover_ws,type=bind,consistency=cached",
+  "workspaceFolder": "/home/ros/urc_rover_ws",
+
+  // Forward GUI (RViz, Gazebo) from container to Windows
+  // This requires VcXsrv (or XQuartz on Mac) to be running on the host
+  "runArgs": [
+    "--net=host",
+    "--privileged",
+    "-e", "DISPLAY=${localEnv:DISPLAY}"
+  ],
+
+  // Install useful VS Code extensions inside the container
+  "extensions": [
+    "ms-vscode.cpptools",
+    "ms-python.python",
+    "ms-iot.vscode-ros"
+  ],
+
+  // Command to run after the container is created
+  "postCreateCommand": "sudo rosdep init && rosdep update"
+}
